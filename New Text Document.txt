@@ -1,0 +1,23 @@
+desc lms_book_details;
+DESC lms_fine_details;
+DESC LMS_MEMBERS;
+DESC SUPPLIER_DETAILS;
+
+SELECT * from user_constraints where table_name='LMS_BOOK_DETAILS';
+SELECT * from user_constraints where table_name ='LMS_FINE_DETAILS';
+ create table LMS_BOOK_ISSUE(
+ book_issue_number number,
+ member_id varchar(20),
+ book_code varchar(10),
+ date_issue date,
+ date_return date,
+ date_returned date,
+ fine_range varchar(30),
+ constraint cons6 primary key(book_issue_number),
+ constraint cons7 foreign key(book_code) references lms_book_details(book_code),
+ constraint cons8 foreign key(fine_range) references lms_fine_details(fine_range),
+ constraint cons9 foreign key(member_id) references lms_members(member_id)
+ );
+ 
+ alter table lms_members modify member_id varchar(30);
+ select * from user_constraints where table_name ='LMS_BOOK_ISSUE';
